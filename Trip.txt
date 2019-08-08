@@ -1,47 +1,27 @@
-#include <iostream>
-#include <iomanip>
-#include <cmath>
+#include <stdio.h>
+void main() {
+  int num,i,k;
+  scanf("%d",&num);
 
-using namespace std;
+  float bal = 0,key;
+  float array[num],out=0;
 
-int students[1005];
+  for(i=1; i<=num; i++) {
+    scanf("%f",&array[i]);
+  }
 
-int main()
-{
-    int N;
-    
-    while (cin >> N, N)
-    {
-        int sum = 0;
-        for (int i = 0; i < N; ++i)
-        {
-            int dollar, cent;
-            char temp;
-            cin >> dollar >> temp >> cent;
-            students[i] = dollar * 100 + cent;
-            sum += students[i];
-        }
-        
-        int lowAverage = sum / N;
-        int highAverage = lowAverage + ((sum % N) ? 1 : 0);
-        int sumAbove = 0;
-        
-        for (int i = 0; i < N; ++i)
-        {
-            if (students[i] > highAverage)
-                sumAbove += students[i] - highAverage;
-        }
-        
-        int sumBelow = 0;
-        for (int i = 0; i < N; ++i)
-        {
-            if (students[i] < lowAverage)
-                sumBelow += lowAverage - students[i];
-        }
-        
-        int usedSum = max(sumAbove, sumBelow);
-        
-        
-        cout << '$' << (usedSum / 100) << '.' << setw(2) << setfill('0') << (usedSum % 100) << '\n';
+  for(i=1; i<=num; i++) {
+    bal = bal + array[i];
+  }
+
+  key = bal / num;
+
+  for(k=1; k<=num; k++) {
+    if(key > array[k]) {
+      out = out + key - array[k];
     }
+  }
+
+   printf("$%.2f\n",out);
+
 }
